@@ -182,19 +182,20 @@ func runServe(
 	signal.Notify(sigCh, os.Interrupt, syscall.SIGTERM)
 
 	go func() {
-		fmt.Printf("[Command Code Switcher] Supervisor daemon running on http://127.0.0.1:%d\n", *port)
-		fmt.Printf("[Command Code Switcher] Dashboard available at http://127.0.0.1:%d\n", *port)
-		if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
-			fmt.Fprintf(os.Stderr, "Server error: %v\n", err)
-			os.Exit(1)
-		}
+		<-sigCh
+		fmt.Println("\n[Command Code Switcher] Shutting down gracefully...")
+		shutdownCtx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+		defer cancel()
+		_ = server.Shutdown(shutdownCtx)
 	}()
 
-	<-sigCh
-	fmt.Println("\n[Command Code Switcher] Shutting down gracefully...")
-	shutdownCtx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
-	defer cancel()
-	_ = server.Shutdown(shutdownCtx)
+	fmt.Printf("[Command Code Switcher] Supervisor daemon running on http://127.0.0.1:%d\n", *port)
+	fmt.Printf("[Command Code Switcher] Dashboard available at http://127.0.0.1:%d\n", *port)
+
+	if err := server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
+		fmt.Fprintf(os.Stderr, "Server error: %v\n", err)
+		os.Exit(1)
+	}
 }
 
 func runWrap(ctx context.Context, cfg *config.Config, args []string) {
