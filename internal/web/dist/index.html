@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Command Code Switcher | Midnight Hive</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="app-container">
+    <header class="navbar">
+      <div class="brand">
+        <span class="logo-dot"></span>
+        <h1>Command Code Switcher</h1>
+        <span class="badge supervisor-badge">SUPERVISOR ACTIVE</span>
+      </div>
+      <div class="actions">
+        <button id="privacyBtn" class="btn btn-outline" title="Toggle privacy blur (Hotkey: P)">
+          <span class="icon">👁</span> Privacy
+        </button>
+        <button id="refreshBtn" class="btn btn-outline">
+          <span class="icon">↻</span> Refresh Quotas
+        </button>
+        <button id="addAccountBtn" class="btn btn-primary">
+          <span class="icon">+</span> Add Account
+        </button>
+      </div>
+    </header>
+
+    <main class="content">
+      <section class="metrics-bar">
+        <div class="metric-card">
+          <span class="metric-label">ACTIVE ACCOUNT</span>
+          <span id="activeAccountName" class="metric-value">Loading...</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">POOL HEALTH</span>
+          <span id="poolHealthValue" class="metric-value">0 / 0 Ready</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">TOTAL PROXIED REQUESTS</span>
+          <span id="totalRequestsValue" class="metric-value">0</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">FAILOVER REPLAYS</span>
+          <span id="totalFailoversValue" class="metric-value">0</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2>Account Pool</h2>
+          <span id="accountCount" class="counter">0 accounts</span>
+        </div>
+        <div id="accountsGrid" class="accounts-grid"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <h2>Supervisor Telemetry Log</h2>
+          <span class="counter sse-status">● Live SSE</span>
+        </div>
+        <div id="terminalLog" class="terminal-log">
+          <div class="log-entry system">[SYSTEM] Supervisor proxy engine initialized. Listening on :8766.</div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="accountModal" class="modal-backdrop hidden">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>Add Command Code Account</h3>
+        <button id="closeModalBtn" class="close-btn">&times;</button>
+      </div>
+      <form id="addAccountForm">
+        <div class="form-group">
+          <label for="aliasInput">Account Alias</label>
+          <input type="text" id="aliasInput" placeholder="e.g. ibrahim-work or backup-acc" required>
+        </div>
+        <div class="form-group">
+          <label for="apiKeyInput">API Key (user_...)</label>
+          <input type="password" id="apiKeyInput" placeholder="Leave empty to import from ~/.commandcode/auth.json">
+          <small>Leave empty to auto-import currently logged-in Command Code credentials.</small>
+        </div>
+        <div class="modal-actions">
+          <button type="button" id="cancelModalBtn" class="btn btn-outline">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Account</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

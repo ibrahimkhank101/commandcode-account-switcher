@@ -1,0 +1,369 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  background-color: #090D16;
+  color: #E2E8F0;
+  min-height: 100vh;
+}
+
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #1E293B;
+  margin-bottom: 24px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #10B981;
+  box-shadow: 0 0 10px #10B981;
+}
+
+.brand h1 {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.supervisor-badge {
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background-color: #064E3B;
+  color: #34D399;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+}
+
+.btn {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+}
+
+.btn-primary {
+  background-color: #3B82F6;
+  color: #FFFFFF;
+}
+
+.btn-primary:hover {
+  background-color: #2563EB;
+}
+
+.btn-outline {
+  background-color: #0F172A;
+  color: #94A3B8;
+  border: 1px solid #334155;
+}
+
+.btn-outline:hover {
+  background-color: #1E293B;
+  color: #F8FAFC;
+}
+
+.metrics-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.metric-card {
+  background-color: #0F172A;
+  border: 1px solid #1E293B;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.metric-label {
+  font-size: 11px;
+  color: #64748B;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.metric-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #F8FAFC;
+}
+
+.section {
+  margin-bottom: 32px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.section-header h2 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #F8FAFC;
+}
+
+.counter {
+  font-size: 12px;
+  color: #64748B;
+}
+
+.sse-status {
+  color: #10B981;
+}
+
+.accounts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 16px;
+}
+
+.account-card {
+  background-color: #0F172A;
+  border: 1px solid #1E293B;
+  border-radius: 8px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+  transition: border-color 0.15s ease;
+}
+
+.account-card.active {
+  border-color: #3B82F6;
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.15);
+}
+
+.account-card.exhausted {
+  border-color: #EF4444;
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.account-title {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.account-alias {
+  font-size: 16px;
+  font-weight: 700;
+  color: #F8FAFC;
+}
+
+.account-email {
+  font-size: 12px;
+  color: #94A3B8;
+}
+
+.privacy-mode .account-email {
+  filter: blur(5px);
+  user-select: none;
+}
+
+.badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.badge-active {
+  background-color: rgba(59, 130, 246, 0.2);
+  color: #60A5FA;
+}
+
+.badge-ready {
+  background-color: rgba(16, 185, 129, 0.2);
+  color: #34D399;
+}
+
+.badge-exhausted {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: #F87171;
+}
+
+.quota-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.quota-label-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #94A3B8;
+}
+
+.progress-bar-bg {
+  width: 100%;
+  height: 6px;
+  background-color: #1E293B;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.progress-blue { background-color: #3B82F6; }
+.progress-orange { background-color: #F59E0B; }
+.progress-red { background-color: #EF4444; }
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.card-actions button {
+  flex: 1;
+}
+
+.terminal-log {
+  background-color: #050810;
+  border: 1px solid #1E293B;
+  border-radius: 8px;
+  padding: 16px;
+  height: 220px;
+  overflow-y: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.log-entry {
+  line-height: 1.5;
+}
+
+.log-entry.system { color: #64748B; }
+.log-entry.switched { color: #60A5FA; }
+.log-entry.exhausted { color: #F87171; }
+.log-entry.refreshed { color: #34D399; }
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal-backdrop.hidden {
+  display: none;
+}
+
+.modal {
+  background-color: #0F172A;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 24px;
+  width: 100%;
+  max-width: 440px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: #94A3B8;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.form-group {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #94A3B8;
+}
+
+.form-group input {
+  background-color: #090D16;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  padding: 8px 12px;
+  color: #F8FAFC;
+  font-size: 13px;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #3B82F6;
+}
+
+.form-group small {
+  font-size: 11px;
+  color: #64748B;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 24px;
+}
